@@ -38,7 +38,7 @@ function App() {
           {gasRecs.map((gas) => (
             <tr key={gas.id}>
               <td>{gas.date}</td>
-              <td>{gas.title}</td>
+              <td>{gas.title}L</td>
               <td>${gas.price}</td>
               <button
                 //Pass a function, if no () is pass a result
