@@ -39,7 +39,7 @@
   }
   
   .btn.btn-danger {
-    font-size: 13px;
+    font-size: 0.8em;
     background: hsl(0, 100%, 40%, 0.1);
     border: 1px solid hsl(0, 100%, 40%);
     color: hsl(0, 100%, 40%);
@@ -111,7 +111,7 @@
     padding-left: 20px;
     padding-right: 20px;
     text-align: center;
-    font-size: 1em;
+    font-size: 1.1em;
   }
   
   h2{
