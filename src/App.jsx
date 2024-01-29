@@ -1,55 +1,56 @@
-import { useEffect, useState } from "react";
-import { NewTodoForm } from "./NewTodoForm";
+import React, { useEffect, useState } from "react";
+import { NewGasRecord } from "./NewGasRecord";
 import { v4 as uuidv4 } from "uuid";
 import "./styles.css";
-import { TodoList } from "./TodoList";
 
 function App() {
-  const [todos, setTodos] = useState(()=> {
-    const localValue = localStorage.getItem("ITEMS")
-    if(localValue == null) return []
-    return JSON.parse(localValue)
+  const [gasRecs, setGasRecs] = useState(() => {
+    const localValue = localStorage.getItem("Gas");
+    if (localValue == null) return [];
+    return JSON.parse(localValue);
   });
 
-  useEffect(()=> {
-    localStorage.setItem("ITEMS", JSON.stringify(todos))
-  },[todos])
+  useEffect(() => {
+    localStorage.setItem("Gas", JSON.stringify(gasRecs));
+  }, [gasRecs]);
 
-  function addTodo(title) {
-    setTodos((currentTodos) => [
-      ...currentTodos,
-      { id: uuidv4(), title, completed: false },
-    ]);
+  function addGas(date, title, price) {
+    setGasRecs((currentGas) => [...currentGas, { id: uuidv4(),date, title, price }]);
   }
 
-  //completed can be True/False
-  function toggleTodo(id, completed) {
-    setTodos((currentTodos) => {
-      return currentTodos.map((todo) => {
-        if (todo.id === id) {
-          //Return new updated version
-          return { ...todo, completed };
-        }
-
-        return todo;
-      });
-    });
-  }
-
-  function deleteTodo(id) {
-    setTodos((currentTodos) => {
-      return (
-        //Filter is keep the value
-        currentTodos.filter((todo) => todo.id !== id)
-      );
-    });
+  function deleteGas(id) {
+    setGasRecs((currentGas) => currentGas.filter((gas) => gas.id !== id));
   }
 
   return (
     <>
-      <NewTodoForm onSubmit={addTodo}/>
-      <h1 className="">Todo List</h1>
-      <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo}/>
+      <NewGasRecord onSubmit={addGas} />
+      <h2 className="">Records</h2>
+      <table style={{ width: "100%" }}>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Lit</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {gasRecs.map((gas) => (
+            <tr key={gas.id}>
+              <td>{gas.date}</td>
+              <td>{gas.title}</td>
+              <td>${gas.price}</td>
+              <button
+                //Pass a function, if no () is pass a result
+                onClick={() => deleteGas(gas.id)}
+                className="btn btn-danger"
+              >
+                Delete
+              </button>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </>
   );
 }
