@@ -19,7 +19,7 @@ export function NewGasRecord({ onSubmit }) {
   return (
     <form onSubmit={handleSubmit} className="new-item-form">
       <div className="form-row">
-        <h1>Gas Record</h1>
+        <h1 className="pageHead">Gas Record</h1>
         <br />
         <label>Date: </label>
         <input
