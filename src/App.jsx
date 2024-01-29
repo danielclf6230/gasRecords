@@ -25,7 +25,7 @@ function App() {
   return (
     <>
       <NewGasRecord onSubmit={addGas} />
-      <h1>Records</h1>
+      <h2>Records</h2>
       <table style={{ width: "100%" }}>
         <thead>
           <tr>
