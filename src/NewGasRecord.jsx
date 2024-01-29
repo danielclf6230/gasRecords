@@ -34,6 +34,9 @@ export function NewGasRecord({ onSubmit }) {
           onChange={(e) => setNewItem(e.target.value)}
           type="number"
           id="item"
+          step="0.01"
+          min="0"
+          max="9999.99"
         />
         <label>Price: </label>
         <input
@@ -41,6 +44,9 @@ export function NewGasRecord({ onSubmit }) {
           onChange={(e) => setNewPrice(e.target.value)}
           type="number"
           id="price"
+          step="0.01"
+          min="0"
+          max="9999.99"
         />
       </div>
       <button className="btn">Add</button>
